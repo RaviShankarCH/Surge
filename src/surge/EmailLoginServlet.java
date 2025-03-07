@@ -35,6 +35,7 @@ public class EmailLoginServlet extends HttpServlet {
         } else {
             out.println("<h1>Invalid Credentials</h1>");
             System.out.println("Invalid login attempt for user: " + email);
+            response.sendRedirect("Ravi.html");
         }
     }
 }
