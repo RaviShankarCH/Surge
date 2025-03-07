@@ -24,9 +24,10 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         // Check if the username and password match the correct credentials
-        if ("admin".equals(username) || "admin".equals(password)) {
+        if ("admin".equals(username) && "admin".equals(password)) {
             out.println("<h1>Login Successful</h1>");
             System.out.println("Login successfully");
+            response.sendRedirect("Dashboard.html");
         } else {
             out.println("<h1>Invalid Credentials</h1>");
             System.out.println("Invalid credentials");
