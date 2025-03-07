@@ -31,6 +31,7 @@ public class EmailLoginServlet extends HttpServlet {
         if (VALID_EMAIL.equals(email) && VALID_PASSWORD.equals(password)) {
             out.println("<h1>Login Successful</h1>");
             System.out.println("Login successfully for user: " + email);
+            response.sendRedirect("Dashboard.html"); 
         } else {
             out.println("<h1>Invalid Credentials</h1>");
             System.out.println("Invalid login attempt for user: " + email);
