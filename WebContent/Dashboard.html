@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="javascript:void(0)" onclick="showSection('address')">Address Screen</a>
+        <a href="javascript:void(0)" onclick="showSection('education')">Education</a>
+        <a href="javascript:void(0)" onclick="showSection('family-details')">Family Details</a>
+        <a href="javascript:void(0)" onclick="logout()" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>Welcome to Your Dashboard</h2>
+
+        <!-- Address Screen -->
+        <div id="address" class="hidden">
+            <h3>Address Screen</h3>
+            <form action="DashboardServlet" method="POST">
+                <input type="hidden" name="action" value="address" />
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required placeholder="Enter your city">
+                
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required placeholder="Enter your state">
+                
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required placeholder="Enter your country">
+                
+                <input type="submit" class="submit-btn" value="Submit">
+            </form>
+        </div>
+
+        <!-- Education -->
+        <div id="education" class="hidden">
+            <h3>Education</h3>
+            <form action="DashboardServlet" method="POST">
+                <input type="hidden" name="action" value="education" />
+                <label for="qualification">Highest Qualification:</label>
+                <input type="text" id="qualification" name="qualification" required placeholder="Enter your qualification">
+                
+                <label for="passout-year">Passout Year:</label>
+                <input type="number" id="passout-year" name="passout-year" required placeholder="Enter passout year">
+                
+                <label for="percentage">Percentage in Highest Qualification:</label>
+                <input type="number" id="percentage" name="percentage" required placeholder="Enter your percentage">
+                
+                <input type="submit" class="submit-btn" value="Submit">
+            </form>
+        </div>
+
+        <!-- Family Details -->
+        <div id="family-details" class="hidden">
+            <h3>Family Details</h3>
+            <form action="DashboardServlet" method="POST">
+                <input type="hidden" name="action" value="family" />
+                <label for="father-name">Father's Name:</label>
+                <input type="text" id="father-name" name="father-name" required placeholder="Enter your father's name">
+                
+                <label for="mother-name">Mother's Name:</label>
+                <input type="text" id="mother-name" name="mother-name" required placeholder="Enter your mother's name">
+                
+                <label for="siblings">Number of Siblings:</label>
+                <input type="number" id="siblings" name="siblings" required placeholder="Enter number of siblings">
+                
+                <input type="submit" class="submit-btn" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the selected section and hide the others
+        function showSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll('.content > div');
+            sections.forEach(function(section) {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected section
+            var selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+            }
+        }
+
+        // Function to logout
+        function logout() {
+            // Redirect to the login page (email.html)
+            window.location.href = "Email.html"; // This will take the user to the login page after logout
+        }
+    </script>
+</body>
+</html>
